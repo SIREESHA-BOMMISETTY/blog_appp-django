@@ -1,0 +1,355 @@
+/* ==============================
+General
+============================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+background-color: #ffffff;
+color: #212529;
+line-height: 1.6;
+}
+
+/* ==============================
+Main Container
+============================== */
+
+.container {
+width: 90%;
+max-width: 1140px;
+margin: 0 auto;
+}
+
+/* ==============================
+Featured Post
+============================== */
+
+.featured-post {
+margin-top: 30px;
+
+
+min-height: 350px;
+
+background-image:
+    linear-gradient(
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.65)
+    ),
+    url("images/featured.jpg");
+
+background-size: cover;
+background-position: center;
+
+border-radius: 6px;
+
+display: flex;
+align-items: center;
+
+color: white;
+
+
+}
+
+.featured-content {
+width: 70%;
+padding: 50px;
+}
+
+.featured-content h1 {
+font-size: 48px;
+font-style: italic;
+font-weight: 400;
+
+
+margin-bottom: 20px;
+
+
+}
+
+.featured-content p {
+font-size: 20px;
+margin-bottom: 20px;
+}
+
+.featured-content .continue {
+margin-top: 10px;
+}
+
+.featured-content a {
+color: white;
+text-decoration: none;
+font-weight: bold;
+}
+
+.featured-content a:hover {
+text-decoration: underline;
+}
+
+/* ==============================
+Section Title
+============================== */
+
+.section-title {
+margin-top: 35px;
+margin-bottom: 15px;
+
+
+color: #ffc107;
+
+text-transform: uppercase;
+
+letter-spacing: 2px;
+
+font-size: 20px;
+
+
+}
+
+/* ==============================
+Featured Posts
+============================== */
+
+.featured-posts {
+display: grid;
+
+
+grid-template-columns: 1fr 1fr;
+
+gap: 30px;
+
+margin-bottom: 30px;
+
+
+}
+
+/* ==============================
+Post Cards
+============================== */
+
+.post-card {
+border: none;
+
+
+background-color: white;
+
+
+}
+
+.card-body {
+padding: 20px 10px;
+}
+
+.card-body h3 {
+font-size: 25px;
+
+
+margin-bottom: 5px;
+
+
+}
+
+.card-body h3 a {
+color: #212529;
+
+
+text-decoration: none;
+
+
+}
+
+.card-body h3 a:hover {
+color: #007bff;
+}
+
+.card-body small {
+display: block;
+
+
+color: #6c757d;
+
+margin-bottom: 10px;
+
+
+}
+
+.card-body p {
+font-size: 16px;
+
+
+color: #333;
+
+
+}
+
+/* ==============================
+Main Content
+============================== */
+
+.main-content {
+display: grid;
+
+
+grid-template-columns: 2fr 1fr;
+
+gap: 50px;
+
+margin-top: 10px;
+
+}
+
+/* ==============================
+Blog Main
+============================== */
+
+.blog-main {
+width: 100%;
+}
+
+.blog-main .post-card {
+margin-bottom: 15px;
+
+
+border-bottom: 1px solid #eeeeee;
+
+
+}
+
+/* ==============================
+Sidebar
+============================== */
+
+.blog-sidebar {
+width: 100%;
+}
+
+/* ==============================
+About
+============================== */
+
+.about {
+background-color: #f8f9fa;
+
+
+padding: 20px;
+
+margin-bottom: 30px;
+
+border-radius: 5px;
+
+
+}
+
+.about h4 {
+font-size: 22px;
+
+
+font-style: italic;
+
+margin-bottom: 10px;
+
+
+}
+
+.about p {
+font-size: 16px;
+}
+
+/* ==============================
+Follow Us
+============================== */
+
+.follow {
+padding: 10px 20px;
+}
+
+.follow h4 {
+font-size: 22px;
+
+
+font-style: italic;
+
+margin-bottom: 10px;
+
+
+}
+
+.follow ol {
+padding-left: 20px;
+}
+
+.follow li {
+margin-bottom: 5px;
+}
+
+.follow a {
+color: #007bff;
+
+
+text-decoration: none;
+
+
+}
+
+.follow a:hover {
+text-decoration: underline;
+}
+
+/* ==============================
+Footer
+============================== */
+
+footer {
+margin-top: 60px;
+
+
+padding: 30px;
+
+border-top: 1px solid #eeeeee;
+
+text-align: center;
+
+color: #6c757d;
+
+
+}
+
+/* ==============================
+Responsive
+============================== */
+
+@media (max-width: 768px) {
+
+
+.featured-content {
+    width: 100%;
+
+    padding: 30px;
+}
+
+
+.featured-content h1 {
+    font-size: 35px;
+}
+
+
+.featured-posts {
+    grid-template-columns: 1fr;
+}
+
+
+.main-content {
+    grid-template-columns: 1fr;
+}
+
+
+.blog-sidebar {
+    margin-top: 30px;
+}
+
+
+}
