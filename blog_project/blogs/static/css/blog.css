@@ -14,6 +14,51 @@ background-color: #ffffff;
 color: #212529;
 line-height: 1.6;
 }
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 25px 0;
+}
+
+
+.nav h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+.buttons button {
+    padding: 10px 20px;
+
+    border: 1px solid #343a40;
+    border-radius: 5px;
+
+    background-color: white;
+
+    color: #343a40;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+.buttons button:hover {
+    background-color: #343a40;
+    color: white;
+}
+.topics{
+    display:flex
+   
+}
 
 /* ==============================
 Main Container
@@ -34,26 +79,21 @@ margin-top: 30px;
 
 
 min-height: 350px;
-
-background-image:
-    linear-gradient(
-        rgba(0, 0, 0, 0.65),
-        rgba(0, 0, 0, 0.65)
-    ),
-    url("images/featured.jpg");
-
-background-size: cover;
+}
+/* .featured-post{
+   
+ background-size: cover;
 background-position: center;
-
+background-repeat:no-repeat;
 border-radius: 6px;
 
 display: flex;
 align-items: center;
 
 color: white;
+Z-index:1
 
-
-}
+}   */
 
 .featured-content {
 width: 70%;
@@ -61,7 +101,7 @@ padding: 50px;
 }
 
 .featured-content h1 {
-font-size: 48px;
+font-size: 20px;
 font-style: italic;
 font-weight: 400;
 
@@ -72,7 +112,7 @@ margin-bottom: 20px;
 }
 
 .featured-content p {
-font-size: 20px;
+font-size: 10px;
 margin-bottom: 20px;
 }
 
@@ -80,7 +120,7 @@ margin-bottom: 20px;
 margin-top: 10px;
 }
 
-.featured-content a {
+.featured-content  {
 color: white;
 text-decoration: none;
 font-weight: bold;
@@ -88,6 +128,10 @@ font-weight: bold;
 
 .featured-content a:hover {
 text-decoration: underline;
+}
+.featured_container{
+   display:flex;
+   align-items:space-between;
 }
 
 /* ==============================
@@ -186,6 +230,25 @@ color: #333;
 
 }
 
+
+.main-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+
+/* Left side - non-featured posts */
+.blog-main {
+    flex: 1;
+}
+
+
+/* Right side - sidebar */
+.blog-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+}
 /* ==============================
 Main Content
 ============================== */
@@ -351,5 +414,328 @@ Responsive
     margin-top: 30px;
 }
 
+
+}
+
+/* single blog css */
+
+/* =========================================
+   GENERAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #212529;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.blog-detail-container {
+    max-width: 1140px;
+}
+
+
+/* =========================================
+   BLOG ARTICLE
+========================================= */
+
+.blog-detail-container article {
+    width: 100%;
+}
+
+
+/* =========================================
+   BLOG TITLE
+========================================= */
+
+.blog-detail-container article h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #212529;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================
+   DATE + AUTHOR
+========================================= */
+
+.blog-detail-container article .text-muted {
+    font-size: 14px;
+    color: #6c757d !important;
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   CATEGORY BADGE
+========================================= */
+
+.blog-detail-container article .badge {
+    display: inline-block;
+
+    background-color: #0d6efd !important;
+    color: #ffffff !important;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    padding: 5px 10px;
+
+    border-radius: 4px;
+
+    text-decoration: none;
+}
+
+
+/* =========================================
+   FEATURED IMAGE
+========================================= */
+
+.blog-detail-container article figure {
+    width: 100%;
+    margin: 20px 0 25px 0;
+}
+
+.blog-detail-container article figure img {
+    width: 100%;
+
+    /*
+       Keeps the image short like
+       the screenshot.
+    */
+    aspect-ratio: 900 / 400;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 0 !important;
+}
+
+
+/* =========================================
+   BLOG CONTENT
+========================================= */
+
+.blog-detail-container article section {
+    margin-top: 10px;
+}
+
+.blog-detail-container article section p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.blog-detail-container .sidebar {
+    padding-left: 25px;
+}
+
+
+/* =========================================
+   SIDEBAR CARDS
+========================================= */
+
+.blog-detail-container .card {
+    background-color: #ffffff;
+
+    border: 1px solid #dee2e6;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.blog-detail-container .card-header {
+    background-color: #ffffff;
+
+    border-bottom: 1px solid #dee2e6;
+
+    color: #212529;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    padding: 15px 20px;
+}
+
+
+/* =========================================
+   CARD BODY
+========================================= */
+
+.blog-detail-container .card-body {
+    padding: 20px;
+}
+
+
+/* =========================================
+   SEARCH INPUT
+========================================= */
+
+.blog-detail-container .card input[type="text"] {
+    height: 42px;
+
+    border: 1px solid #ced4da;
+
+    font-size: 14px;
+
+    padding: 8px 12px;
+}
+
+.blog-detail-container .card input[type="text"]:focus {
+    outline: none;
+
+    border-color: #86b7fe;
+
+    box-shadow: none;
+}
+
+
+/* =========================================
+   SEARCH BUTTON
+========================================= */
+
+.blog-detail-container .card button {
+    height: 42px;
+
+    background-color: #0d6efd;
+
+    border: 1px solid #0d6efd;
+
+    color: #ffffff;
+
+    padding: 8px 16px;
+
+    font-size: 14px;
+}
+
+.blog-detail-container .card button:hover {
+    background-color: #0b5ed7;
+}
+
+
+/* =========================================
+   CATEGORIES
+========================================= */
+
+.blog-detail-container .card .row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.blog-detail-container .card .row > div {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+
+/* Category links */
+
+.blog-detail-container .card a {
+    color: #0d6efd;
+
+    text-decoration: none;
+
+    font-size: 15px;
+}
+
+.blog-detail-container .card a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   FOLLOW US
+========================================= */
+
+.blog-detail-container .card ul {
+    padding: 0;
+    margin: 0;
+}
+
+.blog-detail-container .card ul li {
+    list-style: none;
+}
+
+.blog-detail-container .card ul li a {
+    color: #0d6efd;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 991px) {
+
+    .blog-detail-container .sidebar {
+        padding-left: 12px;
+        margin-top: 30px;
+    }
+
+    .blog-detail-container article h1 {
+        font-size: 34px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+
+    .blog-detail-container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .blog-detail-container article h1 {
+        font-size: 28px;
+    }
+
+    .blog-detail-container article .text-muted {
+        font-size: 13px;
+    }
+
+    .blog-detail-container article section p {
+        font-size: 16px;
+    }
+
+    .blog-detail-container article figure {
+        margin-top: 15px;
+    }
+
+    .blog-detail-container .card-header {
+        font-size: 18px;
+    }
+
+    .blog-detail-container .card-body {
+        padding: 15px;
+    }
 
 }

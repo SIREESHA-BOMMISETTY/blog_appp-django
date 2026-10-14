@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>search-{{keyword}}</h3>
+<div class="featured_container">
+    
+    <div class="featured-posts">
+        
+    {%for i in search_matching %}
+      
+    
+            <!-- Featured Post 1 -->
+           <div class="post-card">
+                <div class="card-body">
+                    <h3><a href="{% url 'single_blog' i.slug %}">{{i.title}}</a></h3>
+    
+                    <small> {{i.created_at |timesince}}| {{i.author}} </small>
+                    <p>
+                        {{i.short_description | truncatewords:25}}
+                    </p>
+                    <p>read more...</p>
+                 </div>
+             </div>
+            
+    {% endfor %}
+
+    </div>
+    </div>
+     
+
+
+        
+{% endblock %}   

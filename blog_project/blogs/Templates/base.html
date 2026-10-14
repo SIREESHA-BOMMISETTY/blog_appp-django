@@ -1,0 +1,95 @@
+<!-- heading content-->
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>My Blog</title>
+
+
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+
+</head>
+
+<body>
+
+
+<!-- Main Container -->
+<main class="container">
+    <!-- Header -->
+
+    <div class="nav">
+       <h2>BLOG APP</h2>
+           <!-- search field -->
+            
+            <!-- Search -->
+            <div class="card mb-4">
+
+                <div class="card-body">
+
+                    <form method="GET" action="{% url 'search'%}">
+
+                        <div class="input-group">
+
+                            <input class="form-control" type="text" value="{{keyword|default:''}}" name="keyword" placeholder="Enter search term...">
+                            
+
+                            <button class="btn btn-primary"type="submit">
+                            
+                                Go!
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        <div class="buttons">
+        <button>Login</button>
+        <button>Register</button>
+    </div>
+
+
+</div>
+
+<!-- Horizontal Line -->
+
+<hr>
+
+<!-- Topics -->
+<div class="topics">
+            {% for topic in  categories %}
+               <a href="{% url 'category_pages' topic.id%}" style="margin:40px">{{topic.category_name}}</a>
+            
+            {% endfor %}
+</div>   
+        
+    
+<!-- body content -->
+ {% block content %}
+
+ {% endblock %}
+
+<!-- footer content -->
+
+
+<footer>
+
+    <p>
+        Blog built with ♥ by Sireesha
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

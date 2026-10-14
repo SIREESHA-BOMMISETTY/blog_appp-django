@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+
+
+
+
+{% block content %}
+
+<!-- Featured Posts
+<h3 class="section-title">Featured Posts </h3>
+<div class="featured_container">
+       <h3>category-{{categories}}</h3>
+       
+    {% for post in context %}
+    
+    
+    <div class="featured-posts">
+         -->
+        <!-- Featured Post 1 -->
+        <!-- <div class="post-card">
+            <div class="card-body">
+                    
+                    <h3><a href="blog.html">{{post.title}}</a></h3>
+    
+                    <small> {{post.created_at |timesince}}| {{post.author}} </small>
+                    <p>
+                        {{post.short_description | truncatewords:25}}
+                    </p>
+                    <p>read more...</p>
+                 </div>
+             </div>
+            
+
+    </div>
+    </div>
+     
+
+
+{% endfor %}   -->
+<h3>category-{{category_ids}}</h3>
+<div class="featured_container">
+    
+    <div class="featured-posts">
+        
+    {%for post in context%}
+      
+    
+            <!-- Featured Post 1 -->
+           <div class="post-card">
+                <div class="card-body">
+                    <h3><a href="{% url 'single_blog' post.slug %}">{{post.title}}</a></h3>
+    
+                    <small> {{post.created_at |timesince}}| {{post.author}} </small>
+                    <p>
+                        {{post.short_description | truncatewords:25}}
+                    </p>
+                    <p>read more...</p>
+                 </div>
+             </div>
+            
+    {% endfor %}
+
+    </div>
+    </div>
+     
+
+
+        
+{% endblock %}   
+
+
+
+
+
+   
+
+

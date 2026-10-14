@@ -1,288 +1,147 @@
-{% load static %}
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
 
 
-<title>My Blog</title>
 
 
-<link rel="stylesheet" href="{% static 'css/blog.css' %}">
-
-
-</head>
-
-<body>
-
-
-<!-- Main Container -->
-<div class="container">
-    <a href="">spoarts</a>
+{% block content %}
     <!-- Featured Post -->
-    <div class="featured-post">
-
-        <div class="featured-content">
-
-            <h1>
-                The Future of Web Development
-            </h1>
-
-            <p>
-                Web development is constantly changing. Learn about
-                modern technologies and how they are shaping the future
-                of the internet.
-            </p>
-
-            <p class="continue">
-                <a href="blog.html">
-                    Continue reading...
-                </a>
-            </p>
-
-        </div>
-
-    </div>
-
-
+    {% for post in Blog_Details %}
+    {% if forloop.first %}
+            <div class="featured-post" style=" background-image: url('{{ post.featured_image.url }}');
+                                       background-repeat: no-repeat;
+                                       background-size: cover;
+                                       background-position: center;">
+        
+                <div class="featured-content">
+                    <h1>{{ post.title }}</h1>
+                    <p>{{ post.short_description | truncatewords:25}}</p>
+                    <P><a href="{% url 'single_blog' post.slug %}" style="color:white">read more..</a></P>
+                </div>
+        
+            </div>
+    {% endif %}        
+    {% endfor %}
+         
     <!-- Featured Posts -->
-
-    <h3 class="section-title">
-        Featured Posts
-    </h3>
-
-
+    <h3 class="section-title">Featured Posts </h3>
+    <div class="featured_container">
+    
     <div class="featured-posts">
-
-        <!-- Featured Post 1 -->
-
-        <div class="post-card">
-
-            <div class="card-body">
-
-                <h3>
-                    <a href="blog.html">
-                        Learn Python Programming
-                    </a>
-                </h3>
-
-                <small>
-                    2 days ago | John
-                </small>
-
-                <p>
-                    Python is one of the most popular programming
-                    languages. Learn the basics and start building
-                    real-world applications.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- Featured Post 2 -->
-
-        <div class="post-card">
-
-            <div class="card-body">
-
-                <h3>
-                    <a href="blog.html">
-                        Introduction to Django
-                    </a>
-                </h3>
-
-                <small>
-                    4 days ago | David
-                </small>
-
-                <p>
-                    Django is a powerful Python web framework used
-                    to build secure and scalable web applications.
-                </p>
-
-            </div>
-
-        </div>
+    {%for post in Blog_Details%}
+    {% if not forloop.first %}
+    
+            <!-- Featured Post 1 -->
+           <div class="post-card">
+                <div class="card-body">
+                    <h3><a href="{% url 'single_blog' post.slug %}">{{post.title}}</a></h3>
+    
+                    <small> {{post.created_at |timesince}}| {{post.author}} </small>
+                    <p>
+                        {{post.short_description | truncatewords:25}}
+                    </p>
+                    <p>read more...</p>
+                 </div>
+             </div>
+             {% endif %}
+             {% endfor %}
 
     </div>
+    </div>
+     
+
 
 
     <!-- Recent Articles -->
 
-    <h3 class="section-title">
-        Recent Articles
-    </h3>
+  <h3 class="section-title">Recent Articles </h3>
 
+<main class="main-content">
 
-    <main class="main-content">
+    <!-- Non-featured posts -->
+    <div class="blog-main">
 
-        <!-- Blog Main -->
+        {% for post in Blog_non_featured %}
 
-        <div class="blog-main">
+        <div class="post-card">
 
+            <div class="card-body">
 
-            <!-- Article 1 -->
+                <h3>
+                    <a href="{% url 'single_blog' post.slug %}">
+                        {{ post.title }}
+                    </a>
+                </h3>
 
-            <div class="post-card">
-
-                <div class="card-body">
-
-                    <h3>
-                        <a href="blog.html">
-                            What is Full Stack Development?
-                        </a>
-                    </h3>
-
-                    <small>
-                        1 day ago | Sireesha
-                    </small>
-
-                    <p>
-                        Full stack development involves working with
-                        both frontend and backend technologies to build
-                        complete web applications.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- Article 2 -->
-
-            <div class="post-card">
-
-                <div class="card-body">
-
-                    <h3>
-                        <a href="blog.html">
-                            Understanding REST APIs
-                        </a>
-                    </h3>
-
-                    <small>
-                        3 days ago | Sireesha
-                    </small>
-
-                    <p>
-                        REST APIs allow frontend applications to
-                        communicate with backend servers and exchange
-                        data efficiently.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- Article 3 -->
-
-            <div class="post-card">
-
-                <div class="card-body">
-
-                    <h3>
-                        <a href="blog.html">
-                            Getting Started With JavaScript
-                        </a>
-                    </h3>
-
-                    <small>
-                        5 days ago | Sireesha
-                    </small>
-
-                    <p>
-                        JavaScript is an essential language for modern
-                        web development and is used to create interactive
-                        websites.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- Sidebar -->
-
-        <aside class="blog-sidebar">
-
-
-            <!-- About -->
-
-            <div class="about">
-
-                <h4>
-                    About
-                </h4>
+                <small>
+                    {{ post.created_at|timesince }} | {{ post.author }}
+                </small>
 
                 <p>
-                    This is my personal blog where I share articles,
-                    tutorials and information about programming,
-                    web development and technology.
+                    {{ post.short_description|truncatewords:20 }}
+                </p>
+
+                <p>
+                    <a href="{% url 'single_blog' post.slug %}">Read more...</a>
                 </p>
 
             </div>
 
+        </div>
 
-            <!-- Follow Us -->
+        {% endfor %}
 
-            <div class="follow">
-
-                <h4>
-                    Follow Us
-                </h4>
-
-                <ol>
-
-                    <li>
-                        <a href="https://github.com/" target="_blank">
-                            GitHub
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.linkedin.com/" target="_blank">
-                            LinkedIn
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.instagram.com/" target="_blank">
-                            Instagram
-                        </a>
-                    </li>
-
-                </ol>
-
-            </div>
+    </div>
 
 
-        </aside>
+    <!-- Sidebar -->
+    <aside class="blog-sidebar">
 
-    </main>
+        <!-- About -->
+        <div class="about">
 
-</div>
+            <h4>About</h4>
 
+            <p>
+                This is my personal blog where I share articles,
+                tutorials and information about programming,
+                web development and technology.
+            </p>
 
-<!-- Footer -->
-
-<footer>
-
-    <p>
-        Blog built with ♥ by Sireesha
-    </p>
-
-</footer>
+        </div>
 
 
-</body>
+        <!-- Follow Us -->
+        <div class="follow">
 
-</html>
+            <h4>Follow Us</h4>
+
+            <ol>
+
+                <li>
+                    <a href="https://github.com/" target="_blank">
+                        GitHub
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.linkedin.com/" target="_blank">
+                        LinkedIn
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.instagram.com/" target="_blank">
+                        Instagram
+                    </a>
+                </li>
+
+            </ol>
+
+        </div>
+
+    </aside>
+</main>
+<div>
+
+
+{% endblock %}

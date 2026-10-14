@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container blog-detail-container mt-5">
+    <div class="row">
+
+        <!-- =====================================
+             LEFT SIDE - BLOG POST
+        ====================================== -->
+        <div class="col-lg-8">
+
+            <article>
+
+                <!-- Blog Header -->
+                <header class="mb-4">
+
+                    <h1 class="fw-bolder mb-1">
+                        {{ slug_data.title }}
+                    </h1>
+
+                    <div class="text-muted fst-italic mb-2">
+                        Posted on {{ slug_data.created_at }}
+                        by {{ slug_data.author }}
+                    </div>
+
+                    <a
+                        class="badge bg-primary text-decoration-none"
+                        href="#"
+                    >
+                        {{ slug_data.category }}
+                    </a>
+
+                </header>
+
+
+                <!-- Featured Image -->
+                <figure class="mb-4">
+
+                    <img
+                        class="img-fluid"
+                        src="{{ slug_data.featured_image.url }}"
+                        alt="{{ slug_data.title }}"
+                    >
+
+                </figure>
+
+
+                <!-- Blog Content -->
+                <section class="mb-5">
+
+                    <p class="fs-5 mb-4">
+                        {{ slug_data.short_description }}
+                    </p>
+
+                    <p class="fs-5 mb-4">
+                        {{ slug_data.blog_body }}
+                    </p>
+
+                </section>
+
+            </article>
+
+        </div>
+
+
+        <!-- =====================================
+             RIGHT SIDE - SIDEBAR
+        ====================================== -->
+        <div class="col-lg-4 sidebar">
+
+
+
+
+            <!-- Categories -->
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    Categories
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        {% for cat in categories %}
+
+                        <div class="col-sm-6 mb-2">
+
+                            <a href="{% url 'category_pages' cat.id %}">
+                                {{ cat.category_name }}
+                            </a>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Follow Us -->
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    Follow Us
+                </div>
+
+                <div class="card-body">
+
+                    <ul class="list-unstyled mb-0">
+
+                        <li class="mb-2">
+                            <a href="#">
+                                GitHub
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                LinkedIn
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
