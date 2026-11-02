@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
 
 <title>My Blog</title>
@@ -40,7 +42,7 @@
                             <input class="form-control" type="text" value="{{keyword|default:''}}" name="keyword" placeholder="Enter search term...">
                             
 
-                            <button class="btn btn-primary"type="submit">
+                            <button class="btn btn-warning"type="submit">
                             
                                 Go!
                             </button>
@@ -52,13 +54,22 @@
                 </div>
 
             </div>
-        <div class="buttons">
-        <button>Login</button>
-        
-        <a href="{% url 'register' %}">
-            <button>Register</button>
+
+            <div class="buttons">
+        {% if not user.is_authenticated %}    
+        <a href="{% url 'login' %}">
+            <button class="btn btn-warning">Login</button>
         </a>
-    </div>
+        <a href="{% url 'register' %}">
+            <button class="btn btn-warning">Register</button>
+        </a>
+        {% else %}
+        <span>logined as {{user}}</span>
+        <a href="{% url 'logout'%}">
+            <button class="btn btn-warning">Logout</button>
+        </a>
+        {% endif %}
+        </div>
 
 
 </div>

@@ -4,6 +4,9 @@ from django.shortcuts import get_object_or_404, render,redirect
 from blog_project.forms import RegistrationForm
 from .models import category, Blog
 from django.db.models import Q
+from django.contrib import auth
+from django.contrib.auth.forms import AuthenticationForm
+
 # Create your views here.
 def home(req):
    Blog_Details = Blog.objects.filter(is_featured=True)
@@ -59,3 +62,21 @@ def register(req):
    else:
       formTemplate = RegistrationForm()
    return render(req,'registration.html',{'form':formTemplate})
+
+def login(req):
+   if req.method == 'POST':
+      form = AuthenticationForm(req,req.POST)
+      if form.is_valid():
+         username = form.cleaned_data['username']
+         password = form.cleaned_data['password']
+         user = auth.authenticate(username = username,password = password)
+         if user is not None:
+            auth.login(req,user)
+            return render(req,'home.html')
+         
+   form = AuthenticationForm()
+   return render(req,'login.html',{'form':form})
+
+def logout(req):
+    auth.logout(req)
+    return render(req,'home.html')
