@@ -1,5 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render,redirect
+
+from blog_project.forms import RegistrationForm
 from .models import category, Blog
 from django.db.models import Q
 # Create your views here.
@@ -44,3 +46,16 @@ def search_field(req):
    }
    
    return render(req,'search.html',context)
+
+
+def register(req):
+   if req.method == 'POST':
+      formTemplate = RegistrationForm(req.POST)
+      if formTemplate.is_valid():
+         formTemplate.save()
+         return redirect('register')
+      else:
+         print(formTemplate.errors)
+   else:
+      formTemplate = RegistrationForm()
+   return render(req,'registration.html',{'form':formTemplate})

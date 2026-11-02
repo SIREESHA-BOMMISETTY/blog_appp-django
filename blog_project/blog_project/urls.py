@@ -25,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home),
     path('category/',include(urls)),
-    path('<slug:slug>',views.single_blog,name='single_blog'),
+    path('blog/<slug:slug>',views.single_blog,name='single_blog'),
     # search endpoint
-    path('category/search/',views.search_field,name='search')
+    path('category/search/',views.search_field,name='search'),
+    path('register',views.register,name='register'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
