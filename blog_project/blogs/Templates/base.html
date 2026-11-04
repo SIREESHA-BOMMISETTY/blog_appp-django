@@ -64,7 +64,9 @@
             <button class="btn btn-warning">Register</button>
         </a>
         {% else %}
-        <span>logined as {{user}}</span>
+        <a href="{% url 'dashboard' %}">
+            <button class="btn btn-warning">Dashboard</button>
+        </a>
         <a href="{% url 'logout'%}">
             <button class="btn btn-warning">Logout</button>
         </a>

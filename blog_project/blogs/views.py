@@ -25,7 +25,7 @@ def category_pages(req,category_id):
   try:
 
       context = Blog.objects.filter(category = category_id)
-      print(context)
+      
       category_ids = Blog.objects.get(pk=category_id)
       
       
@@ -56,15 +56,17 @@ def register(req):
       formTemplate = RegistrationForm(req.POST)
       if formTemplate.is_valid():
          formTemplate.save()
-         return redirect('register')
+         return redirect('login')
       else:
          print(formTemplate.errors)
    else:
       formTemplate = RegistrationForm()
    return render(req,'registration.html',{'form':formTemplate})
 
+
 def login(req):
    if req.method == 'POST':
+      print(req.POST)
       form = AuthenticationForm(req,req.POST)
       if form.is_valid():
          username = form.cleaned_data['username']
@@ -72,11 +74,14 @@ def login(req):
          user = auth.authenticate(username = username,password = password)
          if user is not None:
             auth.login(req,user)
-            return render(req,'home.html')
-         
-   form = AuthenticationForm()
-   return render(req,'login.html',{'form':form})
+            return redirect('home')
+      else:
+            return render(req,'login.html',{'form':form})
+   else:
+
+      form = AuthenticationForm()
+      return render(req,'login.html',{'form':form})
 
 def logout(req):
     auth.logout(req)
-    return render(req,'home.html')
+    return redirect('home')

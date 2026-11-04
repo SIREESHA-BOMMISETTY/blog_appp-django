@@ -23,7 +23,7 @@ from blogs import views,urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.home),
+    path('',views.home,name = 'home'),
     path('category/',include(urls)),
     path('blog/<slug:slug>',views.single_blog,name='single_blog'),
     # search endpoint
@@ -31,4 +31,5 @@ urlpatterns = [
     path('register',views.register,name='register'),
     path('login',views.login,name = 'login'),
     path('logout',views.logout,name = 'logout'),
+    path('dashboard/',include('Dashboard.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
