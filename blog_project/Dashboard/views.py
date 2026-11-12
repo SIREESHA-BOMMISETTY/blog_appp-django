@@ -4,6 +4,8 @@ from blogs.models import category,Blog
 from .forms import CategoryForm, PostForm
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters  import slugify
+from django.contrib.auth.models import User
+from .forms import userForm
 
 # Create your views here.
 
@@ -87,3 +89,54 @@ def add_posts(req):
     form = PostForm()
 
     return render(req,'Dashboard/addPosts.html',{'form':form})
+
+def edit_posts(req,pk):
+
+    obj = get_object_or_404(Blog,pk=pk)
+    if req.method == 'POST':
+        form = PostForm(req.POST,req.FILES,instance=obj)
+        if form.is_valid():
+            post = form.save(commit=False)
+
+            title =slugify( post.title)
+            form.save()
+            return redirect('posts')
+
+
+    form = PostForm(instance = obj)
+
+    context={
+        'obj':obj,
+        'form':form
+    }
+    return render(req,'Dashboard/editPosts.html',context)
+
+def delete_posts(req,pk):
+    obj = Blog.objects.get(pk=pk)
+    obj.delete()
+    return redirect('posts')
+
+def users(req):
+    users = User.objects.all()
+    
+    context={
+        'users':users,
+        
+        
+    }
+    return render(req,'Dashboard/users.html',context)
+
+def add_users(req):
+
+    if req.method == 'POST':
+       form = userForm(req.POST)
+       if form.is_valid():
+           form.save()
+           return redirect('users')
+       else:
+           print(form.errors)    
+  
+
+    form = userForm()
+
+    return render(req,'Dashboard/addUsers.html',{'form':form})
