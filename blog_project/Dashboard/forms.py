@@ -16,4 +16,11 @@ class PostForm(forms.ModelForm):
 class userForm(UserCreationForm):
     class Meta:
         model= User
-        fields =['username','first_name','last_name','email','is_active','is_staff','is_superuser','groups','user_permissions']     
+        fields =['username','first_name','last_name','email','is_active','is_staff','is_superuser','groups','user_permissions']  
+
+class editUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields =['username','first_name','last_name','email','is_active','is_staff','is_superuser','groups','user_permissions']  
+        
+

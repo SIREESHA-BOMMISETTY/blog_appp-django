@@ -11,6 +11,7 @@
  
 
 <div class="col-md-9">
+  {% if perms.auth.view_user %}
   <h3>Add users</h3>
 <form  method = 'POST' action ="{% url 'add_users' %}"  >
     {% csrf_token %}
@@ -20,6 +21,9 @@
     
 </form>
 </div>
+{% else %}
+<h5>no permission to view this page</h5>
+{% endif %}
 </div>
 
 

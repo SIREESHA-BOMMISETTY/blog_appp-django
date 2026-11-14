@@ -5,7 +5,7 @@ from .forms import CategoryForm, PostForm
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters  import slugify
 from django.contrib.auth.models import User
-from .forms import userForm
+from .forms import userForm,editUserForm
 
 # Create your views here.
 
@@ -80,7 +80,7 @@ def add_posts(req):
              post = form.save(commit=False)
              post.author = req.user
              title = post.title
-             post.slug = slugify(title)
+             post.slug = slugify(title)+'-'+str(post.id)
              form.save()
              return redirect('posts')
          else:
@@ -98,7 +98,7 @@ def edit_posts(req,pk):
         if form.is_valid():
             post = form.save(commit=False)
 
-            title =slugify( post.title)
+            title =slugify( post.title)+'-'+str(post.id)
             form.save()
             return redirect('posts')
 
@@ -140,3 +140,25 @@ def add_users(req):
     form = userForm()
 
     return render(req,'Dashboard/addUsers.html',{'form':form})
+
+def edit_users(req,pk):
+    obj = get_object_or_404(User,pk=pk) 
+    if req.method == 'POST':
+        form = editUserForm(req.POST,instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+        else:
+            print(form.errors)    
+    form = editUserForm(instance=obj)
+
+    context={
+        'form':form,
+        'obj':obj
+    }
+    return render(req,'Dashboard/editUsers.html',context)
+
+def delete_users(req,pk):
+    obj = User.objects.get(pk=pk)
+    obj.delete()
+    return redirect('users')
